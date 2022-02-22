@@ -1,0 +1,84 @@
+<html>
+	<head>
+		<title>xxx</title>
+		<meta name="description" content="Testovací stránka">
+	</head>
+
+<body>
+
+	<form>
+
+		<fieldset>
+			<legend>Osobní údaje</legend>
+
+			<label for="jmeno">Jméno:</label>
+			<input type="text" id="jmeno" name="jmeno" value="Ondøej">
+
+			<br>
+
+			<label for="prijmeni">Pøíjmení:</label>
+			<input type="text" id="prijmeni" placeholder="Pøíjmení">
+
+			<br>
+
+			<label for="email">Email:</label>
+			<input type="email" id="email" value="ondrej@popelka.cz" disabled>
+
+			<br>
+
+			<label for="telefon">Telefon:</label>
+			<input type="text" id="telefon">
+
+		</fieldset>
+
+		<br>
+
+		<fieldset>
+			<legend>Mzdové údaje</legend>
+
+			<label for="plat">Váš plat:</label>
+			<select id="plat">
+				<optgroup label="Socka">
+					<option>10 tis</option>
+					<option>20 tis</option>
+					<option>30 tis</option>
+				</optgroup>
+				<optgroup label="Boháè">
+					<option>100 tis</option>
+					<option>200 tis</option>
+					<option>300 tis</option>
+				</optgroup>
+			</select>
+
+			<br>
+
+			<textarea rows="10" cols="50">Váš vzkaz...</textarea>
+
+			<br>
+
+			Vaše vzdìlání:
+
+			<label><input type="radio" name="vzdelani"> ZŠ</label>
+			<label><input type="radio" name="vzdelani"> SŠ</label>
+
+		</fieldset>
+
+		<br>
+
+		<label>
+			<input type="checkbox">
+			Souhlasím s..
+		</label>
+
+		<br><br>
+
+		<input type="submit" value="Odeslat dotaz">
+		<input type="reset" value="Vymaž">
+
+		<input type="hidden" value="123">
+
+	</form>
+
+</body>
+
+</html>

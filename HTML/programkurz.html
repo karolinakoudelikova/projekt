@@ -1,0 +1,42 @@
+<html>
+	<head>
+		<title>Formulář</title>
+		<meta charset="utf-8">
+		<meta name="description" content="Testovací stránka">
+<style>
+	body {background-color:yellow; text-align:center;}
+	h1 {color:red;}
+</style>
+	</head>
+	<body>
+		<h1>Hello world, lidi!</h1>
+
+			<form action="zpracovani.php"
+				  method="post"
+				  style="color: black">
+				<fieldset>
+
+						<legend><h2>Vyplňte údaje prosím</h2></legend>
+
+						<label for="email">Email:</label>
+						<input type="email" id="email" name="email" placeholder="@">
+
+						<br>
+
+						<label for="password">Heslo:</label>
+						<input type="password" id="password" name="password">
+					</fieldset>
+				<br>
+
+				<label>
+					<input type="checkbox" id="checkbox" name="checkbox">
+					Souhlasím se zpracováním osobních údajů
+				</label>
+				<br>
+				<br>
+				<input type="submit" value="Odeslat">
+			</form>
+
+	</body>
+
+</html>

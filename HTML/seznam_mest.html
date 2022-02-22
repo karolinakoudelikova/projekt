@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.lds-ring {
+				display: inline-block;
+				position: relative;
+				width: 80px;
+				height: 80px;
+			}
+
+			.lds-ring div {
+				box-sizing: border-box;
+				display: block;
+				position: absolute;
+				width: 64px;
+				height: 64px;
+				margin: 8px;
+				border: 8px solid #fff;
+				border-radius: 50%;
+				animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+				border-color: #fff transparent transparent transparent;
+			}
+
+			.lds-ring div:nth-child(1) {
+				animation-delay: -0.45s;
+			}
+
+			.lds-ring div:nth-child(2) {
+				animation-delay: -0.3s;
+			}
+
+			.lds-ring div:nth-child(3) {
+				animation-delay: -0.15s;
+			}
+
+			@keyframes lds-ring {
+				0% {
+					transform: rotate(0deg);
+				}
+				100% {
+					transform: rotate(360deg);
+				}
+			}
+
+
+		</style>
+
+	</head>
+	<body>
+
+		<body style="background-color: pink; color: black; text-align: center">
+			<h1> Seznam měst v kraji: <span id="demo"> </span></h1>
+
+
+			<label for="kraj">Vyberte kraj:</label>
+
+			<select id="kraj" onchange="myFunction(this.value)">
+				<option value=""></option>
+				<option>Jihočeský</option>
+				<option>Středočeský</option>
+				<option>Královéhradecký</option>
+				<option>Jihomoravský</option>
+			</select>
+
+			<div id="xy" style="display: none">
+				<div class="lds-ring">
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+				</div>
+				<div id="overlayer"></div>
+				<div class="preloader">
+					<div class="loader">
+						<span class="loader-inner"></span>
+					</div>
+					<p> Loading...</p>
+				</div>
+			</div>
+
+			<div id="nevim"> </div>
+
+			<script>
+
+				function myFunction(vybranyKraj) {
+					document.getElementById("xy").style.display = "block";
+
+					document.getElementById("demo").innerHTML = vybranyKraj;
+
+					var client = new XMLHttpRequest();
+					client.open('GET', 'https://data.cesko.digital/obce/1/obce.json');
+					client.onreadystatechange = function () {
+						var vypis = "";
+						var mesta = JSON.parse(client.responseText);
+						//console.log (mesta);
+						//Projdeme vsechny mesta
+
+						vypis += '<table border=1, style="margin-left: auto; margin-right: auto;">';
+
+						for (var i = 0; i < mesta.municipalities.length; i++) {
+							if (mesta.municipalities[i].adresaUradu.kraj === vybranyKraj) {
+
+								vypis += "<tr>";
+								vypis += "<td>";
+								vypis += mesta.municipalities[i].hezkyNazev;
+								vypis += "</td>";
+								vypis += "<td>";
+								vypis += mesta.municipalities[i].datovaSchrankaID;
+								vypis += "</td>";
+								vypis += "</tr>";
+
+							}
+						}
+						document.getElementById("nevim").innerHTML = vypis;
+						// schovame preloader
+
+						vypis += "</table>";
+						document.getElementById("xy").style.display = "none";
+						var tabulka = document.createElement("table");
+					};
+					client.send();
+				}
+
+			</script>
+
+		</body>
+</html>
