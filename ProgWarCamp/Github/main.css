@@ -8,9 +8,7 @@
 }
 
 .top {
-    -webkit-animation: toptop 1.5s ease-in-out;
-    -moz-animation: toptop 1.5s ease-in-out;
-    -ms-animation: toptop 1.5s ease-in-out;
+
     animation: toptop 1.5s ease-in-out;
 }
 
@@ -30,16 +28,12 @@
 }
 
 .copyrajt {
-    -webkit-animation: kopyrajt 1.5s ease-in-out;
-    -moz-animation: kopyrajt 1.5s ease-in-out;
-    -ms-animation: kopyrajt 1.5s ease-in-out;
+
     animation: kopyrajt 1.5s ease-in-out;
 }
 
 .vetsi {
-    -webkit-animation: vetsivetsi 1.5s ease-in-out;
-    -moz-animation: vetsivetsi 1.5s ease-in-out;
-    -ms-animation: vetsivetsi 1.5s ease-in-out;
+prev
     animation: vetsivetsi 1.5s ease-in-out;
 }
 
@@ -127,7 +121,7 @@
 
 .projects__item {
     position: relative;
-    border-bottom: 5px solid #ff652f;
+    border-bottom: 5px solid deepskyblue;
     overflow: hidden;
     cursor: pointer;
 }
