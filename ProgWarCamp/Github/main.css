@@ -15,23 +15,17 @@
 }
 
 .right {
-    -webkit-animation: rightright 1.5s ease-in-out;
-    -moz-animation: rightright 1.5s ease-in-out;
-    -ms-animation: rightright 1.5s ease-in-out;
+
     animation: rightright 1.5s ease-in-out;
 }
 
 .left {
-    -webkit-animation: leftleft 1.5s ease-in-out;
-    -moz-animation: leftleft 1.5s ease-in-out;
-    -ms-animation: leftleft 1.5s ease-in-out;
+
     animation: leftleft 1.5s ease-in-out;
 }
 
 .bottom {
-    -webkit-animation: bottombottom 1.5s ease-in-out;
-    -moz-animation: bottombottom 1.5s ease-in-out;
-    -ms-animation: bottombottom 1.5s ease-in-out;
+
     animation: bottombottom 1.5s ease-in-out;
 }
 
