@@ -1,5 +1,6 @@
 <?php
 
+use \Curl\Curl;
 class AllCities {
 
     public $celkemMest = 0;
@@ -13,22 +14,20 @@ class AllCities {
 
     //Zavoláme downloader, vytvoříme proměnnou json
     public function downloadAndDecodeData() {
-        $downloader = new Downloader();
-        $json = $downloader->download('https://data.cesko.digital/obce/1/obce.json');
-        $jsonDecode = json_decode($json, true);
-
-        return $jsonDecode;
+        $curl = new Curl();
+        $curl->get('https://data.cesko.digital/obce/1/obce.json');
+        return $curl->response;
     }
 
     //
     public function loadData() {
         $jsonDecode = $this->downloadAndDecodeData();
 
-        foreach ($jsonDecode["municipalities"] as $mesto) {
+        foreach ($jsonDecode->municipalities as $mesto) {
             $this->cities[] = $mesto;
             $this->celkemMest++;
-            if (!in_array($mesto["adresaUradu"]["kraj"], $this->regions)){
-                $this->regions[] = $mesto["adresaUradu"]["kraj"];
+            if (!in_array($mesto->adresaUradu->kraj, $this->regions)){
+                $this->regions[] = $mesto->adresaUradu->kraj;
             }
           }
 
@@ -48,16 +47,16 @@ class AllCities {
 
         foreach ($this->cities as $mesto) {
 
-            if ($mesto["adresaUradu"]["kraj"] === $kraj) {
+            if ($mesto->adresaUradu->kraj === $kraj) {
 
                 $this->vybranoMest++;
 
                 $vypis .= ('<tr>');
                 $vypis .= ('<td>');
-                $vypis .= $mesto["hezkyNazev"];
+                $vypis .= $mesto->hezkyNazev;
                 $vypis .= ("</td>");
                 $vypis .= ("<td>");
-                $vypis .= $mesto["datovaSchrankaID"];
+                $vypis .= $mesto->datovaSchrankaID;
                 $vypis .= ("</td>");
                 $vypis .= ("</tr>");
             }

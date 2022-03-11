@@ -8,9 +8,5 @@ class City {
         $this->name = $name;
         $this->idBox = $idBox;
     }
-    public function createTable (){
-        $city = new AllCities();
-        $city->downloadAndDecodeData();
-    }
 
 }
