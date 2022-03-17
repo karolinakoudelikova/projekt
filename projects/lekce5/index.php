@@ -1,6 +1,6 @@
 <?php
 require "InterfaceDownloader.php";
-require "Downloader.php";
+require "FileGetContentsDownloader.php";
 require "City.php";
 require "AllCities.php";
 

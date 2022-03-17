@@ -36,6 +36,7 @@ echo "<br>";*/
 
 
 echo "Kraj:" . $_GET["kraj"];
-$allCities = new AllCities();
+$downloader = new CurlDownloader();
+$allCities = new AllCities($downloader);
 echo $allCities->createTable($_GET["kraj"]);
 echo "Nalezeno:" . $allCities->vybranoMest . " z celkem " . $allCities->celkemMest;

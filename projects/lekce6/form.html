@@ -13,7 +13,8 @@
     <select id="kraj" name="kraj">
         <option value=""></option>
 <?php
-$allCities = new AllCities();
+$downloader = new CurlDownloader();
+$allCities = new AllCities($downloader);
 echo $allCities->getRegionOptions();
 ?>
     </select>

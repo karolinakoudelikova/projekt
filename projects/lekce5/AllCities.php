@@ -6,15 +6,16 @@ class AllCities {
     public $vybranoMest = 0;
     public $cities = [];
     public $regions = [];
+    public $downloader;
 
-    public function __construct() {
+    public function __construct(InterfaceDownloader $downloader) {
+        $this->downloader = $downloader;
         $this->loadData();
     }
 
     //Zavoláme downloader, vytvoříme proměnnou json
     public function downloadAndDecodeData() {
-        $downloader = new Downloader();
-        $json = $downloader->download('https://data.cesko.digital/obce/1/obce.json');
+        $json = $this->downloader->download('https://data.cesko.digital/obce/1/obce.json');
         $jsonDecode = json_decode($json, true);
 
         return $jsonDecode;

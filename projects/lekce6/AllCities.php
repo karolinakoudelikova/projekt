@@ -7,21 +7,22 @@ class AllCities {
     public $vybranoMest = 0;
     public $cities = [];
     public $regions = [];
+    public $downloader;
 
-    public function __construct() {
+    public function __construct(InterfaceDownloader $downloader) {
+        $this->downloader = $downloader;
         $this->loadData();
     }
 
     //Zavoláme downloader, vytvoříme proměnnou json
     public function downloadAndDecodeData() {
-        $curl = new Curl();
-        $curl->get('https://data.cesko.digital/obce/1/obce.json');
-        return $curl->response;
+        return $this->downloader->download('https://data.cesko.digital/obce/1/obce.json');
     }
 
     //
     public function loadData() {
         $jsonDecode = $this->downloadAndDecodeData();
+
 
         foreach ($jsonDecode->municipalities as $mesto) {
             $this->cities[] = $mesto;

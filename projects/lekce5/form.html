@@ -12,10 +12,11 @@
 
     <select id="kraj" name="kraj">
         <option value=""></option>
-<?php
-$allCities = new AllCities();
+        <?php
+        $downloader = new FileGetContentsDownloader();
+$allCities = new AllCities($downloader);
 echo $allCities->getRegionOptions();
-?>
+        ?>
     </select>
     <br><br>
 
