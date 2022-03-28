@@ -33,10 +33,14 @@ $Jana->pozdrav();
 
 echo "<br>";*/
 
-
-
 echo "Kraj:" . $_GET["kraj"];
-$downloader = new FileGetContentsDownloader();
-$allCities = new AllCities($downloader);
 echo $allCities->createTable($_GET["kraj"]);
 echo "Nalezeno:" . $allCities->vybranoMest . " z celkem " . $allCities->celkemMest;
+
+// Připravení dotazu
+$dotaz = $pdo->prepare("INSERT into  seznam_mest(ip_adress,region, result_count) VALUE(?,?,?)");
+// Vykonání dotazu
+$vysledek = $dotaz->execute(array(
+    $_SERVER['REMOTE_ADDR'],$_GET["kraj"],$allCities->vybranoMest,
+
+));
