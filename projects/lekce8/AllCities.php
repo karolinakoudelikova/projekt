@@ -46,6 +46,14 @@ class AllCities {
         }
         return $vypis;
     }
+    public function logDataToDatabase() {
+        // Připravení dotazu
+        $dotaz = $this->pdo->prepare("INSERT into  seznam_mest(ip_adress,region, result_count) VALUE(?,?,?)");
+// Vykonání dotazu
+        $vysledek = $dotaz->execute(array(
+            $_SERVER['REMOTE_ADDR'],$_GET["kraj"],$this->vybranoMest
+        ));
+    }
 
     public function createTable($kraj) {
         $vypis = '';
@@ -67,12 +75,8 @@ class AllCities {
             }
 
         }
-        // Připravení dotazu
-        $dotaz = $this->pdo->prepare("INSERT into  seznam_mest(ip_adress,region, result_count) VALUE(?,?,?)");
-// Vykonání dotazu
-        $vysledek = $dotaz->execute(array(
-            $_SERVER['REMOTE_ADDR'],$_GET["kraj"],$this->vybranoMest
-        ));
+        $this->logDataToDatabase();
+
         //if ($pocetMest === 0) {
             $output = "Byl vybrán špatný kraj!";
         //}
