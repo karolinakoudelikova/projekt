@@ -3,10 +3,6 @@ require "InterfaceDownloader.php";
 require "FileGetContentsDownloader.php";
 require "AllCities.php";
 
-
-$downloader = new FileGetContentsDownloader();
-$allCities = new AllCities($downloader);
-
 define('SQL_HOST', 'localhost');
 define('SQL_DBNAME', 'regions');
 define('SQL_USERNAME', 'root');
@@ -22,6 +18,9 @@ try {
 } catch (PDOException $e) {
     die('Connection failed: ' . $e->getMessage());
 }
+
+$downloader = new FileGetContentsDownloader();
+$allCities = new AllCities($downloader, $pdo);
 
 if (isset($_GET) && !empty($_GET)) {
     require('zkouska.php');

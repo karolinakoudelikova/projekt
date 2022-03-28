@@ -7,11 +7,14 @@ class AllCities {
     public $cities = [];
     public $regions = [];
     public $downloader;
+    public $pdo;
 
-    public function __construct(InterfaceDownloader $downloader) {
+    public function __construct(InterfaceDownloader $downloader, PDO $pdo) {
         $this->downloader = $downloader;
+        $this->pdo = $pdo;
         $this->loadData();
     }
+
 
     //Zavoláme downloader, vytvoříme proměnnou json
     public function downloadAndDecodeData() {
@@ -62,8 +65,14 @@ class AllCities {
                 $vypis .= ("</td>");
                 $vypis .= ("</tr>");
             }
-        }
 
+        }
+        // Připravení dotazu
+        $dotaz = $this->pdo->prepare("INSERT into  seznam_mest(ip_adress,region, result_count) VALUE(?,?,?)");
+// Vykonání dotazu
+        $vysledek = $dotaz->execute(array(
+            $_SERVER['REMOTE_ADDR'],$_GET["kraj"],$this->vybranoMest
+        ));
         //if ($pocetMest === 0) {
             $output = "Byl vybrán špatný kraj!";
         //}
