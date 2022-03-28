@@ -1,4 +1,5 @@
 <?php
+
 class FileGetContentsDownloader implements InterfaceDownloader {
 
     public function download($url) {
