@@ -1,1 +1,1 @@
-{"version":1,"defects":[],"times":{"AllCitiesTest::testX":0.023}}
+{"version":1,"defects":{"AllCitiesTest::testTable":3,"AllCitiesTest::testCityCount":3},"times":{"AllCitiesTest::testX":0.014,"AllCitiesTest::testTable":2.629,"AllCitiesTest::testCityCount":2.77}}
